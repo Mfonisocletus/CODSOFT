@@ -1,12 +1,24 @@
+#ifndef TODO_LIST_H
+#define TODO_LIST_H
 
-command-line To-Do List application in Python. This application allows users to create, update, and view tasks...
+#include <iostream>
+#include <vector>
+#include <string>
 
-(pip install rich.)
+class TodoApp {
+public:
+    TodoApp();  // Constructor
 
-from rich import print 
+    void createTask(const std::string& title, const std::string& description, const std::string& dueDate);
+    void viewTasks() const;
+    void updateTask(int taskIndex, const std::string& title, const std::string& description, const std::string& dueDate);
 
-class TodoApp:
-    def __init__(self):
+private:
+    std::vector<std::string> tasks;
+
+};
+
+def __init__(self):
        
     def create_task(self, title, description, due_date):
         task = {"title": title, "description": description, "due_date": due_date}
@@ -30,7 +42,7 @@ def list_tasks():
     for i, task in enumerate(tasks):
         print(f"{i+1}. {task}"):
 
-/* define functions to the main menu and handle user choice */
+//define functions to the main menu and handle user choice. 
 
 def main():
     while True:
@@ -65,3 +77,6 @@ def main():
 
     else:
         print("Invalid choice. Please try again.")
+
+
+#endif   // TODO_LIST_H
