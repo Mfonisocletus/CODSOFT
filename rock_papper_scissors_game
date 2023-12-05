@@ -1,0 +1,76 @@
+import random
+
+# Choices
+CHOICES = {"R": "Rock", "P": "Paper", "S": "Scissors"}
+WIN_COMBINATIONS = {"R": "S", "P": "R", "S": "P"}
+
+# Score tracking
+user_score = 0
+computer_score = 0
+
+def user_choice():
+  """Gets valid user choice for rock, paper, or scissors."""
+  while True:
+    choice = input("Choose rock (R), paper (P), or scissors (S): ").upper()
+    if choice not in CHOICES:
+      print("Invalid choice! Please try again.")
+      continue
+    return choice
+
+def computer_choice():
+  """Generates random computer choice."""
+  return random.choice(list(CHOICES.keys()))
+
+def check_winner(user, computer):
+  """Determines the winner based on user and computer choices."""
+  if user == computer:
+    return "Tie!"
+  elif WIN_COMBINATIONS[user] == computer:
+    return "You win!"
+  else:
+    return "Computer wins!"
+
+def play_round():
+  """Plays a single round of the game."""
+  global user_score, computer_score
+
+  # User choice
+  user = user_choice()
+  print(f"You chose: {CHOICES[user]}")
+
+  # Computer choice
+  computer = computer_choice()
+  print(f"Computer chose: {CHOICES[computer]}")
+
+  # Determine winner and update scores
+  result = check_winner(user, computer)
+  if result == "You win!":
+    user_score += 1
+  elif result == "Computer wins!":
+    computer_score += 1
+
+  print(result)
+
+def play_again():
+  """Asks user if they want to play another round."""
+  while True:
+    choice = input("Play again? (Y/N): ").upper()
+    if choice not in ["Y", "N"]:
+      print("Invalid choice! Please try again.")
+      continue
+    return choice == "Y"
+
+def main():
+  """Runs the main game loop."""
+  print("Welcome to Rock-Paper-Scissors!")
+
+  while True:
+    play_round()
+    print(f"Current score: You: {user_score}, Computer: {computer_score}")
+
+    if not play_again():
+      print("Thanks for playing! ")
+      break
+
+if __name__ == "__main__":
+  main()
