@@ -1,0 +1,67 @@
+
+command-line To-Do List application in Python. This application allows users to create, update, and view tasks...
+
+(pip install rich.)
+
+from rich import print 
+
+class TodoApp:
+    def __init__(self):
+       
+    def create_task(self, title, description, due_date):
+        task = {"title": title, "description": description, "due_date": due_date}
+        self.tasks.append(task)
+        print("Task created successfully!")
+
+    def view_tasks(self):
+        if not self.tasks:
+            print("No tasks to display.")
+            return
+
+        def complete_task(index):
+    try:
+        task = tasks[index]
+        tasks[index] = f"[title]{task}[/tittle]"
+        print(f"[tiittle]Marked task '{task}' complete![/title]")
+    except IndexError:
+        print(f"[red]Task index {index} not found![/red]")
+
+def list_tasks():
+    for i, task in enumerate(tasks):
+        print(f"{i+1}. {task}"):
+
+/* define functions to the main menu and handle user choice */
+
+def main():
+    while True:
+        print("[bold]To-Do List[/bold]")
+        print("[1] Add a task")
+        print("[2] Mark a task complete")
+        print("[3] List all tasks")
+        print("[q] Quit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        title = input("Enter task title: ")
+        description = input("Enter task description: ")
+        due_date = input("Enter due date: ")
+        todo_app.create_task(title, description, due_date)
+
+    elif choice == "2":
+        todo_app.view_tasks()
+
+    elif choice == "3":
+        todo_app.view_tasks()
+        task_index = int(input("Enter the task index to update: "))
+        title = input("Enter new task title (press Enter to keep the current title): ")
+        description = input("Enter new task description (press Enter to keep the current description): ")
+        due_date = input("Enter new due date (press Enter to keep the current due date): ")
+        todo_app.update_task(task_index, title, description, due_date)
+
+    elif choice == "4":
+        print("Exiting...")
+        break
+
+    else:
+        print("Invalid choice. Please try again.")
