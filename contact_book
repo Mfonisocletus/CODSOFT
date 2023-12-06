@@ -1,0 +1,124 @@
+contacts = {}
+
+contact_details = {
+  "phone_number": "012-345-6789",
+  "email": "johndoe@example.com",
+  "address": "123 Main Street, Anytown"
+}
+
+contacts["Mfoniso vel"] = contact_details
+
+
+    def add_contact(self, contact):
+        self.contacts.append(contact)
+        print("Contact added successfully!")
+
+    def view_contacts():
+  if not contacts:
+    print("No contacts saved!")
+    return
+
+  print("Name\t\tPhone Number")
+  for name, details in contacts.items():
+    print(f"{name}\t{details['phone_number']}")
+
+
+    def search_contacts(self, keyword):
+        results = [contact for contact in self.contacts if keyword.lower() in contact.name.lower() or keyword in contact.phone]
+        if not results:
+            print("No matching contacts found.")
+        else:
+            for contact in results:
+                print(f"{contact.name} - {contact.phone}")
+
+    def update_contact():
+  name = input("Enter contact name to update: ")
+
+  if name not in contacts:
+    print(f"Contact '{name}' not found!")
+    return
+
+  current_details = contacts[name]
+  print(f"Current details for '{name}':")
+  for field, value in current_details.items():
+    print(f"\t- {field}: {value}")
+
+  update_fields = []
+  while True:
+    field_to_update = input("Enter field to update (phone, email, address, or 'done'): ")
+    if field_to_update.lower() == "done":
+      break
+    elif field_to_update not in current_details:
+      print(f"Invalid field! Available options: phone, email, address.")
+      continue
+
+    update_fields.append(field_to_update)
+
+  for field in update_fields:
+    new_value = input(f"Enter new value for '{field}': ")
+    current_details[field] = new_value
+
+  print(f"Contact '{name}' updated successfully!")
+
+    def delete_contact():
+  name = input("Enter contact name to delete: ")
+
+  if name not in contacts:
+    print(f"Contact '{name}' not found!")
+    return
+
+  confirmation = input(f"Are you sure you want to delete '{name}'? (y/n) ")
+
+
+
+def user_interface():
+    contact_manager = ContactManager()
+
+    while True:
+        print("\n===== Contact Management System =====")
+        print("1. Add Contact")
+        print("2. View Contacts")
+        print("3. Search Contacts")
+        print("4. Update Contact")
+        print("5. Delete Contact")
+        print("6. Exit")
+
+        choice = input("Enter your choice (1-6): ")
+
+        if choice == "1":
+            name = input("Enter contact name: ")
+            phone = input("Enter contact phone number: ")
+            email = input("Enter contact email: ")
+            address = input("Enter contact address: ")
+            new_contact = Contact(name, phone, email, address)
+            contact_manager.add_contact(new_contact)
+
+        elif choice == "2":
+            contact_manager.view_contacts()
+
+        elif choice == "3":
+            keyword = input("Enter search keyword (name or phone): ")
+            contact_manager.search_contacts(keyword)
+
+        elif choice == "4":
+            old_phone = input("Enter the phone number of the contact to update: ")
+            name = input("Enter updated contact name: ")
+            phone = input("Enter updated contact phone number: ")
+            email = input("Enter updated contact email: ")
+            address = input("Enter updated contact address: ")
+            updated_contact = Contact(name, phone, email, address)
+            contact_manager.update_contact(old_phone, updated_contact)
+
+        elif choice == "5":
+            phone = input("Enter the phone number of the contact to delete: ")
+            contact_manager.delete_contact(phone)
+
+        elif choice == "6":
+            print("Exiting Contact Management System. Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    user_interface() is
